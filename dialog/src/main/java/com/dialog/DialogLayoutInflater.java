@@ -28,7 +28,7 @@ public class DialogLayoutInflater extends LayoutInflater {
     public View inflate(int resource, @Nullable ViewGroup root, boolean attachToRoot) {
         DialogFrameLayout dialogFrameLayout = new DialogFrameLayout(getContext());
         dialogFrameLayout.setOnTouchOutsideListener(listener);
-        dialogFrameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        dialogFrameLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         layoutInflater.inflate(resource, dialogFrameLayout, true);
         return dialogFrameLayout;
     }

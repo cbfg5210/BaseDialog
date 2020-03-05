@@ -15,9 +15,9 @@ public class DialogFrameLayout extends FrameLayout {
         void onTouchOutside();
     }
 
-    GestureDetector gestureDetector = null;
-
-    OnTouchOutsideListener onTouchOutsideListener;
+    private GestureDetector gestureDetector;
+    private OnTouchOutsideListener onTouchOutsideListener;
+    private Rect outRect = new Rect();
 
     public void setOnTouchOutsideListener(OnTouchOutsideListener onTouchOutsideListener) {
         this.onTouchOutsideListener = onTouchOutsideListener;
@@ -25,10 +25,7 @@ public class DialogFrameLayout extends FrameLayout {
 
     public DialogFrameLayout(@NonNull Context context) {
         super(context);
-        commonInit(context);
-    }
 
-    private void commonInit(@NonNull Context context) {
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDown(MotionEvent e) {
@@ -37,13 +34,9 @@ public class DialogFrameLayout extends FrameLayout {
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                Rect rect = new Rect();
-                getHitRect(rect);
                 int count = getChildCount();
                 for (int i = count - 1; i > -1; i--) {
-                    View child = getChildAt(i);
-                    Rect outRect = new Rect();
-                    child.getHitRect(outRect);
+                    getChildAt(i).getHitRect(outRect);
                     if (outRect.contains((int) e.getX(), (int) e.getY())) {
                         return false;
                     }
