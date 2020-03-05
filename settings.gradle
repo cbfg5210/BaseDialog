@@ -1,2 +1,3 @@
 rootProject.name='BaseDialog'
 include ':app'
+include ':dialog'
