@@ -19,7 +19,21 @@ open class BDFragment : DialogFragment() {
         if (layoutRes == 0) {
             return super.onCreateView(inflater, container, savedInstanceState)
         }
-        return inflater.inflate(layoutRes, container, false)
+        if (dialog!!.window!!.isFloating) {
+            return inflater.inflate(layoutRes, container, false)
+        }
+        val rootView = DFrameLayout(context!!)
+        rootView.setOnTouchOutsideListener {
+            if (isCancelable) {
+                dismiss()
+            }
+        }
+        rootView.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        inflater.inflate(layoutRes, rootView, true)
+        return rootView
     }
 
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
@@ -32,18 +46,9 @@ open class BDFragment : DialogFragment() {
             setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
         }
         super.onGetLayoutInflater(savedInstanceState)
+        configWindow(dialog!!.window!!)
         // 换成 Activity 的 inflater, 解决 fragment 样式 bug
-        var layoutInflater = activity!!.layoutInflater
-        val window = dialog!!.window!!
-        configWindow(window)
-        if (!window.isFloating) {
-            layoutInflater = DLayoutInflater(requireContext(), layoutInflater) {
-                if (isCancelable) {
-                    dismiss()
-                }
-            }
-        }
-        return layoutInflater
+        return activity!!.layoutInflater
     }
 
     /*
