@@ -8,7 +8,6 @@ open class BDFragment : DialogFragment() {
     //如果传入布局资源则表示通过 onCreateView 进行布局
     var layoutRes = 0
     var isFullScreen = false
-    var isFocusable = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,13 +56,7 @@ open class BDFragment : DialogFragment() {
     */
 
     private fun configWindow(window: Window) {
-        if (!isFocusable) {
-            //弹出dialog时,保持隐藏状态栏、底部栏
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-            )
-        } else if (isFullScreen) {
+        if (isFullScreen) {
             Utils.hideBottomUIMenu(window)
         }
     }

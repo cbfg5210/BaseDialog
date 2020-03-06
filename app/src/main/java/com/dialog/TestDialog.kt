@@ -1,7 +1,9 @@
 package com.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 
 /**
  * 添加人：  Tom Hawk
@@ -22,18 +24,17 @@ class TestDialog : BDFragment() {
     */
 
     init {
-        layoutRes = R.layout.dialog_test
+//        layoutRes = R.layout.dialog_test
         isFullScreen = true
-//        isFocusable = false
     }
 
-    /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
             .setTitle("Hello")
 //            .setView(R.layout.dialog_test)
             .setMessage("Hello world!")
             .create()
-    }*/
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
