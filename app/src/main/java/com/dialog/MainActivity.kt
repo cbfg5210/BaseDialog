@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private val callback: (() -> Unit) by lazy {
+        { Toast.makeText(this, "Click", Toast.LENGTH_LONG).show() }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         hideBottomUIMenu(window)
@@ -16,10 +20,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnDialog.setOnClickListener {
-            TestDialog().show(supportFragmentManager, "TestDialog")
+            showCallbackDialog()
+//            TestDialog().show(supportFragmentManager, "TestDialog")
 //            TDialog().show(supportFragmentManager,"TestDialog")
 //            showDialog()
         }
+
+        /*
+         * 屏幕旋转后
+         */
+        if (savedInstanceState != null) {
+            (supportFragmentManager.findFragmentByTag("CallbackDialog") as TestCallbackDialog?)?.setCallback(
+                callback
+            )
+        }
+    }
+
+    private fun showCallbackDialog() {
+        val dialog = TestCallbackDialog()
+        dialog.setCallback(callback)
+        dialog.show(supportFragmentManager, "CallbackDialog")
     }
 
     private fun showDialog() {
