@@ -17,6 +17,26 @@ class MainActivity : AppCompatActivity() {
 
         btnDialog.setOnClickListener {
             TestDialog().show(supportFragmentManager, "TestDialog")
+//            TDialog().show(supportFragmentManager,"TestDialog")
+//            showDialog()
+        }
+    }
+
+    private fun showDialog() {
+        /*
+         * 报错:
+         * java.lang.IllegalStateException: Fragment null must be a public static class to be  properly recreated from instance state.
+         */
+        object : BDFragment() {
+            init {
+                layoutRes = R.layout.dialog_test
+            }
+        }.show(supportFragmentManager, "TestDialog")
+    }
+
+    class TDialog : BDFragment() {
+        init {
+            layoutRes = R.layout.dialog_test
         }
     }
 
