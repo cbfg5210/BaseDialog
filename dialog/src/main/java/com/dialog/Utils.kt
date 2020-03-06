@@ -16,27 +16,11 @@ import android.view.WindowManager
  */
 internal object Utils {
     /**
-     * 隐藏虚拟按键
-     *
-     * @param window
-     * @param isAutoFullscreen 是否全屏
-     */
-    fun hideBottomUIMenu(window: Window, isAutoFullscreen: Boolean) {
-        totalFullScreen(window)
-
-        if (isAutoFullscreen) {
-            //当用户划出虚拟按键后，自动再隐藏
-            //KLog.e("键盘是否弹出:" + (window.getAttributes().softInputMode == WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED));
-            window.decorView.setOnSystemUiVisibilityChangeListener { totalFullScreen(window) }
-        }
-    }
-
-    /**
      * 隐藏虚拟按键，并且全屏
      *
      * @param window
      */
-    private fun totalFullScreen(window: Window) {
+    fun hideBottomUIMenu(window: Window) {
         if (Build.VERSION.SDK_INT < 19) {
             //for low api versions
             window.decorView.systemUiVisibility = View.GONE

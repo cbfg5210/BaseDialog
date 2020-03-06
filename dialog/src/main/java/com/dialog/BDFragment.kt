@@ -67,7 +67,7 @@ open class BDFragment : DialogFragment() {
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
             )
         } else if (isFullScreen) {
-            Utils.hideBottomUIMenu(window, true)
+            Utils.hideBottomUIMenu(window)
         }
     }
 }
