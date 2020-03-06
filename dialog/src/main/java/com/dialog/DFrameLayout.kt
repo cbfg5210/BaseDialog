@@ -7,6 +7,9 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.widget.FrameLayout
 
+/**
+ * 参考：https://github.com/listenzz/AndroidNavigation/blob/master/navigation/src/main/java/com/navigation/androidx/DialogFrameLayout.java
+ */
 internal class DFrameLayout(context: Context) : FrameLayout(context) {
     private var onTouchOutsideListener: (() -> Unit)? = null
     private val outRect = Rect()
