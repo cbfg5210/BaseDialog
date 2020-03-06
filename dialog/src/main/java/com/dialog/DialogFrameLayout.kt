@@ -10,6 +10,8 @@ import android.widget.FrameLayout
 class DialogFrameLayout(context: Context) : FrameLayout(context) {
     private var onTouchOutsideListener: (() -> Unit)? = null
     private val outRect = Rect()
+    private var x = 0
+    private var y = 0
 
     fun setOnTouchOutsideListener(onTouchOutsideListener: (() -> Unit)?) {
         this.onTouchOutsideListener = onTouchOutsideListener
@@ -19,9 +21,11 @@ class DialogFrameLayout(context: Context) : FrameLayout(context) {
         override fun onDown(e: MotionEvent) = true
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {
+            x = e.x.toInt()
+            y = e.y.toInt()
             for (i in childCount - 1 downTo 0) {
                 getChildAt(i).getHitRect(outRect)
-                if (outRect.contains(e.x.toInt(), e.y.toInt())) {
+                if (outRect.contains(x, y)) {
                     return false
                 }
             }
