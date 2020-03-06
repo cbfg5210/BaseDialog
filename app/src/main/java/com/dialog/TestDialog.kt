@@ -1,9 +1,11 @@
 package com.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 
 /**
  * 添加人：  Tom Hawk
@@ -15,12 +17,27 @@ import android.view.ViewGroup
  * 修改内容：
  */
 class TestDialog : BDFragment() {
+    /*
+    E/dialog: onCreate
+    E/dialog: onGetLayoutInflater
+    E/dialog: onCreateDialog
+    E/dialog: onCreateView
+    E/dialog: onStart
+    */
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return AlertDialog.Builder(context!!)
+            .setTitle("Hello")
+            .setMessage("Hello world!")
+            .create()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_test, container, false)
+        //return inflater.inflate(R.layout.dialog_test, container, false)
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
