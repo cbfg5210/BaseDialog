@@ -25,19 +25,24 @@ class TestDialog : BDFragment() {
     E/dialog: onStart
     */
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    init {
+        willCreateView=true
+    }
+
+  /*  override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
             .setTitle("Hello")
+//            .setView(R.layout.dialog_test)
             .setMessage("Hello world!")
             .create()
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return inflater.inflate(R.layout.dialog_test, container, false)
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.dialog_test, container, false)
+//        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
