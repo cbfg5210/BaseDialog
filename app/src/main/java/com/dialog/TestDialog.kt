@@ -1,11 +1,7 @@
 package com.dialog
 
-import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 
 /**
  * 添加人：  Tom Hawk
@@ -41,5 +37,6 @@ class TestDialog : BDFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //view.tvTip.text = "Hello Hello"
     }
 }
