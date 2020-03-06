@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 
-open class BDFragment : DialogFragment() {
+abstract class BDFragment : DialogFragment() {
     //如果传入布局资源则表示通过 onCreateView 进行布局
     var layoutRes = 0
     var isFullScreen = false
