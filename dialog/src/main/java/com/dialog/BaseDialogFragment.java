@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import kotlin.Unit;
+
 public class BaseDialogFragment extends DialogFragment {
 
     @NonNull
@@ -25,6 +27,7 @@ public class BaseDialogFragment extends DialogFragment {
                 if (isCancelable()) {
                     dismiss();
                 }
+                return Unit.INSTANCE;
             });
         }
         return layoutInflater;
