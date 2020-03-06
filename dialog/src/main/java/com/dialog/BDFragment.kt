@@ -1,22 +1,31 @@
 package com.dialog
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import androidx.fragment.app.DialogFragment
 
 open class BDFragment : DialogFragment() {
-    //是否通过 onCreateView 布局
-    var willCreateView = true
+    //如果传入布局资源则表示通过 onCreateView 进行布局
+    var layoutRes = 0
     var isFullScreen = false
     var isFocusable = true
     var softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        if (layoutRes == 0) {
+            return super.onCreateView(inflater, container, savedInstanceState)
+        }
+        return inflater.inflate(layoutRes, container, false)
+    }
+
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
         //如果不通过 onCreateView 布局的话不用覆写此方法
         //通过 onCreateDialog 布局的话覆不覆写这里没有影响
-        if (!willCreateView) {
+        if (layoutRes == 0) {
             return super.onGetLayoutInflater(savedInstanceState)
         }
         if (theme == 0) {

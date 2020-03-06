@@ -26,7 +26,7 @@ class TestDialog : BDFragment() {
     */
 
     init {
-        willCreateView = true
+        layoutRes = R.layout.dialog_test
         isFullScreen = true
 //        isFocusable = false
     }
@@ -39,12 +39,7 @@ class TestDialog : BDFragment() {
             .create()
     }*/
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.dialog_test, container, false)
-//        return super.onCreateView(inflater, container, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 }
