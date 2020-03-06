@@ -24,17 +24,17 @@ class TestDialog : BDFragment() {
     */
 
     init {
-//        layoutRes = R.layout.dialog_test
-        isFullScreen = true
+        layoutRes = R.layout.dialog_test
+        //isFullScreen = true
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(context!!)
             .setTitle("Hello")
 //            .setView(R.layout.dialog_test)
             .setMessage("Hello world!")
             .create()
-    }
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

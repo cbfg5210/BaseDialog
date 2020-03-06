@@ -1,7 +1,10 @@
 package com.dialog
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import androidx.fragment.app.DialogFragment
 
 open class BDFragment : DialogFragment() {
@@ -48,12 +51,6 @@ open class BDFragment : DialogFragment() {
         // 换成 Activity 的 inflater, 解决 fragment 样式 bug
         return activity!!.layoutInflater
     }
-
-    /*
-    // 解决黑色状态栏的问题
-    AppUtils.setStatusBarTranslucent(window, true);
-    AppUtils.setStatusBarColor(window, Color.TRANSPARENT, false);
-    */
 
     private fun configWindow(window: Window) {
         if (isFullScreen) {
