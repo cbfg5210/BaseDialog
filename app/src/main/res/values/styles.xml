@@ -10,8 +10,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="FullScreenDialog2" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item>
+    <style name="FullScreenDialog2" parent="FullScreenDialog">
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

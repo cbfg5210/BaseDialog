@@ -25,7 +25,8 @@ class TestDialog : BDFragment() {
 
     init {
         layoutRes = R.layout.dialog_test
-        //isFullScreen = true
+        isFullScreen = true
+        //setStyle(STYLE_NORMAL, R.style.FullScreenDialog2)
     }
 
     /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
