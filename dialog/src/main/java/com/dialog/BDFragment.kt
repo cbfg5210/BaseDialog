@@ -9,7 +9,6 @@ open class BDFragment : DialogFragment() {
     var layoutRes = 0
     var isFullScreen = false
     var isFocusable = true
-    var softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,8 +57,6 @@ open class BDFragment : DialogFragment() {
     */
 
     private fun configWindow(window: Window) {
-        window.setSoftInputMode(softInputMode)
-
         if (!isFocusable) {
             //弹出dialog时,保持隐藏状态栏、底部栏
             window.setFlags(
