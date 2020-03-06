@@ -7,7 +7,9 @@ import androidx.fragment.app.DialogFragment
 
 open class BaseDialogFragment : DialogFragment() {
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        if (theme == 0) {
+            setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        }
         super.onGetLayoutInflater(savedInstanceState)
         // 换成 Activity 的 inflater, 解决 fragment 样式 bug
         var layoutInflater = activity!!.layoutInflater
