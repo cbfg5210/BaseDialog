@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class DialogLayoutInflater(
+internal class DLayoutInflater(
     context: Context?,
     private val layoutInflater: LayoutInflater,
     private val listener: () -> Unit
@@ -19,7 +19,7 @@ class DialogLayoutInflater(
         root: ViewGroup?,
         attachToRoot: Boolean
     ): View {
-        val rootLayout = DialogFrameLayout(context)
+        val rootLayout = DFrameLayout(context)
         rootLayout.setOnTouchOutsideListener(listener)
         rootLayout.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,

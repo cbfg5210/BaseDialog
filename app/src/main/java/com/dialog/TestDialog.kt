@@ -14,7 +14,7 @@ import android.view.ViewGroup
  * 修改时间：2020/3/5 16:53
  * 修改内容：
  */
-class TestDialog : BaseDialogFragment() {
+class TestDialog : BDFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

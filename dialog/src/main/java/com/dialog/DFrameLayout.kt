@@ -7,7 +7,7 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.widget.FrameLayout
 
-class DialogFrameLayout(context: Context) : FrameLayout(context) {
+internal class DFrameLayout(context: Context) : FrameLayout(context) {
     private var onTouchOutsideListener: (() -> Unit)? = null
     private val outRect = Rect()
     private var x = 0
