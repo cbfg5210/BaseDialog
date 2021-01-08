@@ -1,10 +1,8 @@
 package cbfg.dialog
 
+import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.fragment.app.DialogFragment
 
 abstract class BDFragment : DialogFragment() {
@@ -20,21 +18,21 @@ abstract class BDFragment : DialogFragment() {
         if (layoutRes == 0) {
             return super.onCreateView(inflater, container, savedInstanceState)
         }
-        if (dialog!!.window!!.isFloating) {
+        if (dialog?.window?.isFloating == true) {
             return inflater.inflate(layoutRes, container, false)
         }
-        val rootView = DFrameLayout(context!!)
-        rootView.setOnTouchOutsideListener {
-            if (isCancelable) {
-                dismiss()
+        return DFrameLayout(context!!).also {
+            it.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            it.setOnTouchOutsideListener {
+                if (isCancelable) {
+                    dismiss()
+                }
             }
+            inflater.inflate(layoutRes, it, true)
         }
-        rootView.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        inflater.inflate(layoutRes, rootView, true)
-        return rootView
     }
 
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
@@ -47,14 +45,41 @@ abstract class BDFragment : DialogFragment() {
             setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
         }
         super.onGetLayoutInflater(savedInstanceState)
-        configWindow(dialog!!.window!!)
+        configWindow(dialog?.window)
         // 换成 Activity 的 inflater, 解决 fragment 样式 bug
         return activity!!.layoutInflater
     }
 
-    private fun configWindow(window: Window) {
+    private fun configWindow(window: Window?) {
+        window ?: return
         if (isFullScreen) {
-            Utils.hideBottomUIMenu(window)
+            hideBottomUIMenu(window)
         }
+    }
+
+    /**
+     * 隐藏虚拟按键，并且全屏
+     *
+     * @param window
+     */
+    private fun hideBottomUIMenu(window: Window) {
+        if (Build.VERSION.SDK_INT < 19) {
+            //for low api versions
+            window.decorView.systemUiVisibility = View.GONE
+            return
+        }
+
+        //for new api versions.
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                // hide nav bar
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                // hide status bar
+                View.SYSTEM_UI_FLAG_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_IMMERSIVE or
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
     }
 }
