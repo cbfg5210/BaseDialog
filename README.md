@@ -1,4 +1,4 @@
 # BaseDialog
-[![](https://jitpack.io/v/cbfg5210/BaseDialog.svg)](https://jitpack.io/#cbfg5210/BaseDialog)
+[![](https://jitpack.io/v/com.gitee.cbfg5210/BaseDialog.svg)](https://jitpack.io/#com.gitee.cbfg5210/BaseDialog)
 
- implementation 'com.github.cbfg5210:BaseDialog:Tag'
+implementation 'com.gitee.cbfg5210:BaseDialog:$version'
