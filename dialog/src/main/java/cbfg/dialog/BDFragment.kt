@@ -1,4 +1,4 @@
-package com.dialog
+package cbfg.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

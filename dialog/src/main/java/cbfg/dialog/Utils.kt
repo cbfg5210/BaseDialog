@@ -1,4 +1,4 @@
-package com.dialog
+package cbfg.dialog
 
 import android.os.Build
 import android.view.View

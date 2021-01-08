@@ -2,6 +2,7 @@ package com.dialog
 
 import android.os.Bundle
 import android.view.View
+import cbfg.dialog.BDFragment
 import kotlinx.android.synthetic.main.dialog_test.view.*
 
 /**

@@ -1,4 +1,4 @@
-package com.dialog
+package cbfg.dialog
 
 import android.content.Context
 import android.graphics.Rect

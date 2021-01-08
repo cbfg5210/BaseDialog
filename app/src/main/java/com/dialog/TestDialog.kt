@@ -1,9 +1,8 @@
 package com.dialog
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
+import cbfg.dialog.BDFragment
 
 /**
  * 添加人：  Tom Hawk
