@@ -1,10 +1,10 @@
 package com.dialog
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import cbfg.dialog.BDFragment
@@ -16,13 +16,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        hideBottomUIMenu(window)
+        setFullScreen(window)
+        window.decorView.setOnSystemUiVisibilityChangeListener { setFullScreen(window) }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btnDialog.setOnClickListener {
-            showCallbackDialog()
-//            TestDialog().show(supportFragmentManager, "TestDialog")
+//            showCallbackDialog()
+            TestDialog().show(supportFragmentManager, "TestDialog")
 //            TDialog().show(supportFragmentManager,"TestDialog")
 //            showDialog()
         }
@@ -61,24 +63,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun hideBottomUIMenu(window: Window) {
-        if (Build.VERSION.SDK_INT < 19) {
-            //for low api versions
-            window.decorView.systemUiVisibility = View.GONE
-            return
+    private fun setFullScreen(window: Window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            window.statusBarColor = Color.TRANSPARENT
+            window.navigationBarColor = Color.TRANSPARENT
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //设置 Android 4.4 的全屏效果
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN)
         }
-
-        //for new api versions.
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                // hide nav bar
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                // hide status bar
-                View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_IMMERSIVE or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
     }
 }

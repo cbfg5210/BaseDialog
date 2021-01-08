@@ -10,7 +10,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="FullScreenDialog2" parent="FullScreenDialog">
+    <style name="FullScreenDialog2" parent="BaseDialogTheme">
         <item name="android:windowFullscreen">true</item>
     </style>
 </resources>
